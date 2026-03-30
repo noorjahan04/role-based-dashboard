@@ -13,6 +13,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+/* ✅ ADD THIS ROOT ROUTE */
+app.get('/', (req, res) => {
+  res.json({
+    message: "🚀 Role-Based Dashboard API is running successfully",
+    status: "OK",
+    endpoints: {
+      login: "/api/auth/login",
+      admins: "/api/admins",
+      users: "/api/users",
+      notes: "/api/notes"
+    }
+  });
+});
+
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/admins', require('./routes/adminRoutes'));
